@@ -157,7 +157,7 @@ func createNewCluster() error {
 	fmt.Print("    minikube config set driver <your-driver>\n\n")
 
 	// create cluster and wait until ready
-	createCluster := exec.Command("minikube", "start", "--kubernetes-version", kubernetesVersion, "--cpus", "3", "--profile", clusterName, "--wait", "all")
+	createCluster := exec.Command("minikube", "start", "--kubernetes-version", kubernetesVersion, "--cpus", "3", "--profile", clusterName, "--wait", "all", "--driver", "docker", "--image-mirror-country", "cn", "--registry-mirror", "https://x2og3451.mirror.aliyuncs.com", "--base-image", "registry.cn-hangzhou.aliyuncs.com/google_containers/kicbase:v0.0.28")
 	if err := runCommandWithOutput(createCluster); err != nil {
 		return fmt.Errorf("minikube create: %w", err)
 	}
